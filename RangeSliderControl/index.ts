@@ -2,23 +2,45 @@ import {IInputs, IOutputs} from "./generated/ManifestTypes";
 import noUiSlider = require("nouislider");
 
 export class RangeSliderControl implements ComponentFramework.StandardControl<IInputs, IOutputs> {
-	private _slider: HTMLDivElement;
-
-	private _minValue: number;
-	private _maxValue: number;
-	private _stepValue: number;
-	private _upperValue: number;
-	private _lowerValue: number;
-
-	private _context: ComponentFramework.Context<IInputs>;
-	private notifyOutputChanged: () => void;
+	// Reference to the control container HTMLDivElement
+	// This element contains all elements of our custom control example
 	private _container: HTMLDivElement;
 
-	/**
-	 * Empty constructor.
-	 */
-	constructor()
-	{
+	// Reference to ComponentFramework Context object
+	private _context: ComponentFramework.Context<IInputs>;
+
+	private _refreshData: EventListenerOrEventListenerObject;
+
+	// Flag if control view has been rendered
+	private _controlViewRendered: boolean;
+
+	// PCF framework delegate which will be assigned to this object. Called whenever any update happens. 
+	private _notifyOutputChanged: () => void;
+
+/*	// Common PowerApps parameters for presentation adjustment
+	private _paddingTop: number;
+	private _paddingBottom: number;
+	private _paddingLeft: number;
+	private _paddingRight: number;
+	private _minHeight: number; // add/remove from this depending on settings for Value and Scale display
+*/	// Parameters for the control setup to be passed to noUiSlider
+	private _startLowerValue: number;
+	private _startUpperValue: number;
+	private _rangeLowerValue: number;
+	private _rangeUpperValue: number;
+	private _toolTips: boolean;
+	private _stepValue: number;		// (ref: step)
+//	private _snapSwitch: boolean;		// (ref: snap)
+//	private _pipsDensity: number;
+//	private _pipsMode: 
+	private _behaviourString: string;
+	// Parameters for noUiSlider specific presentation tweaks
+	private _handlePadding: number;		// limits how close to the slider edges the handles can be (ref: padding)
+	// Define outputs
+	private _lowerValue: number;
+	private _upperValue: number;
+	
+	constructor() {
 
 	}
 
@@ -28,79 +50,20 @@ export class RangeSliderControl implements ComponentFramework.StandardControl<II
 	 * @param context The entire property bag available to control via Context Object; It contains values as set up by the customizer mapped to property names defined in the manifest, as well as utility functions.
 	 * @param notifyOutputChanged A callback method to alert the framework that the control has new outputs ready to be retrieved asynchronously.
 	 * @param state A piece of data that persists in one session for a single user. Can be set at any point in a controls life cycle by calling 'setControlState' in the Mode interface.
-	 * @param container If a control is marked control-type='starndard', it will receive an empty div element within which it can render its content.
+	 * @param container If a control is marked control-type='standard', it will receive an empty div element within which it can render its content.
 	 */
-	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container:HTMLDivElement)
-	{
-		this.refreshData = this.refreshData.bind(this);
-
-		this.notifyOutputChanged = notifyOutputChanged;
+	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container:HTMLDivElement): void {
+		this._controlViewRendered = false;
+		this._context = context;
 		this._container = container;
+		this._notifyOutputChanged = notifyOutputChanged;
 
-		this._minValue = context.parameters.MinValue.raw || 0;
-		this._maxValue = context.parameters.MaxValue.raw || 100;
-		this._stepValue = context.parameters.StepValue.raw || 10;
-		this._upperValue = context.parameters.UpperValue.raw;
-		this._lowerValue = context.parameters.LowerValue.raw;
-
-		let showScale = !!context.parameters.ShowScale.raw;
-		let requireStep = !!context.parameters.RequireStep.raw;
-
-		this._slider = document.createElement("div");
-		this._slider.id = "slider";
-
-		let wrapperContainer = document.createElement("div");
-		wrapperContainer.className = "dwcrm-slider-wrapper";
-
-		wrapperContainer.appendChild(this._slider);
-
-		this._container.appendChild(wrapperContainer);
-
-		let startLower:number = this._lowerValue || this._minValue;
-		let startUpper:number = this._upperValue || this._maxValue;
-
-		let sliderOptions = this.getSliderOptions(this._minValue, this._maxValue,
-			startLower, startUpper, this._stepValue, showScale, requireStep);
-
-		noUiSlider.create(this._slider, sliderOptions);
-
-		// @ts-ignore
-		this._slider.noUiSlider.on('change', this.refreshData);
+		this._container = document.createElement("div");
+		this._container.classList.add("dwcrm-slider-wrapper");
+		container.appendChild(this._container);
 	}
 
-	private getSliderOptions(min:number,max:number, startLower:number, startUpper:number, 
-		step:number, showScale:boolean, requireStep:boolean): noUiSlider.Options{
-
-		let options:noUiSlider.Options = {
-			start: [startLower, startUpper],
-			range: {
-				'min': min,
-				'max': max
-			},
-			connect: true,
-			tooltips: true
-		};
-
-		if(showScale && step){
-			options.pips = {
-				mode: 'steps',
-        		values: [0, 50, 100],
-				density: 2,
-				stepped: true
-			};
-		}
-
-		if(requireStep){
-			options.range = {
-				'min': [min, step],
-				'max': max
-			}
-		}
-
-		return options;
-	}
-
-	public refreshData(values:string[], handle:number):void{
+	public refreshData(values:string[], handle:number): void {
 		console.log("refreshData");
 		let value:string = values[handle];
 
@@ -109,45 +72,53 @@ export class RangeSliderControl implements ComponentFramework.StandardControl<II
 		} else {
 			this._upperValue = parseFloat(value);
 		}
-		this.notifyOutputChanged();
+		this._notifyOutputChanged();
 	}
-
 
 	/**
 	 * Called when any value in the property bag has changed. This includes field values, data-sets, global values such as container height and width, offline status, control metadata values such as label, visible, etc.
 	 * @param context The entire property bag available to control via Context Object; It contains values as set up by the customizer mapped to names defined in the manifest, as well as utility functions
 	 */
-	public updateView(context: ComponentFramework.Context<IInputs>): void
-	{
-		let updated:boolean = false;
-		this._context = context;
-		let newUpper = context.parameters.UpperValue.raw;
-		if(this._upperValue != newUpper){
-			this._upperValue = newUpper;
-			updated = true;
-		}
+	public updateView(context: ComponentFramework.Context<IInputs>): void {
+		if(!this._controlViewRendered) {
+			// Render the control
+			noUiSlider.create(this._container, {
+/*				start: [this._context.parameters.StartLowerValue.raw || 20, this._context.parameters.StartUpperValue.raw || 80],
+				range: {
+					'min': this._context.parameters.RangeLowerValue.raw || 0,
+					'max': this._context.parameters.RangeUpperValue.raw || 100
+				*/
+				start: [10, 80],
+				range: {
+					'min': 0,
+					'max': 100
+				},				
+				step: this._context.parameters.StepValue.raw || 10,
+				direction: "ltr",
+				connect: [false, true, false],
+				tooltips: this._context.parameters.ToolTips.raw || true,
+				behaviour: this._context.parameters.BehaviourString.raw || "drag-tap-smooth-steps",
 
-		let newLower = context.parameters.LowerValue.raw;
-		if(this._lowerValue != newLower){
-			this._lowerValue = newLower;
-			updated = true;
-		}
+			});
+			this._lowerValue = this._context.parameters.StartLowerValue.raw || 0;
+			this._upperValue = this._context.parameters.StartUpperValue.raw || 100;
 
-		if(updated){
-			// @ts-ignore
-			this._slider.noUiSlider.set([this._lowerValue, this._upperValue]);
+			// @ts-ignorecd 
+			this._container.noUiSlider.on('update', this.refreshData);
+
+			this._controlViewRendered = true;
 		}
 	}
+
 
 	/** 
 	 * It is called by the framework prior to a control receiving new data. 
 	 * @returns an object based on nomenclature defined in manifest, expecting object[s] for property marked as “bound” or “output”
 	 */
-	public getOutputs(): IOutputs
-	{
+	public getOutputs(): IOutputs {
 		return { 
-            UpperValue: this._upperValue, 
-            LowerValue: this._lowerValue 
+            SelectedUpperValue: this._upperValue, 
+           	SelectedLowerValue: this._lowerValue 
         };
 	}
 
@@ -155,8 +126,7 @@ export class RangeSliderControl implements ComponentFramework.StandardControl<II
 	 * Called when the control is to be removed from the DOM tree. Controls should use this call for cleanup.
 	 * i.e. cancelling any pending remote calls, removing listeners, etc.
 	 */
-	public destroy(): void
-	{
+	public destroy(): void {
 		// Add code to cleanup control if necessary
 	}
 }
