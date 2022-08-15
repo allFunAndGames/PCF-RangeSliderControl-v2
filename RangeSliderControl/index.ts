@@ -9,7 +9,7 @@ export class RangeSliderControl implements ComponentFramework.StandardControl<II
 	// Reference to ComponentFramework Context object
 	private _context: ComponentFramework.Context<IInputs>;
 
-	private _refreshData: EventListenerOrEventListenerObject;
+	private _control: noUiSlider.target;
 
 	// Flag if control view has been rendered
 	private _controlViewRendered: boolean;
@@ -40,8 +40,11 @@ export class RangeSliderControl implements ComponentFramework.StandardControl<II
 	private _lowerValue: number;
 	private _upperValue: number;
 	
-	constructor() {
-
+	/**
+	 * Empty constructor.
+	 */
+	 constructor() {
+		// no-op: method not leveraged by this custom control
 	}
 
 	/**
@@ -57,16 +60,50 @@ export class RangeSliderControl implements ComponentFramework.StandardControl<II
 		this._context = context;
 		this._container = container;
 		this._notifyOutputChanged = notifyOutputChanged;
+		this.refreshData = this.refreshData.bind(this);
 
-		this._container = document.createElement("div");
-		this._container.classList.add("dwcrm-slider-wrapper");
-		container.appendChild(this._container);
+		let wrapperContainer = document.createElement("div");
+		wrapperContainer.classList.add("dwcrm-slider-wrapper");
+	
+		//	Add css to wrapper to reflect padding values
+		//	wrapperContainer.style.backgroundColor = this._context.parameters.BackgroundFill.raw || "White";
+		wrapperContainer.style.paddingTop = this._context.parameters.PaddingTop.raw + "px" || "0px";
+		wrapperContainer.style.paddingBottom = this._context.parameters.PaddingBottom.raw + "px" || "0px";
+		wrapperContainer.style.paddingLeft = this._context.parameters.PaddingLeft.raw + "px" || "0px";
+		wrapperContainer.style.paddingRight = this._context.parameters.PaddingRight.raw + "px" || "0px";
+
+		this._control = document.createElement("div");
+		wrapperContainer.appendChild(this._control);
+		this._container.appendChild(wrapperContainer);
+		
+		
+
+		// Render slider
+		noUiSlider.create(this._control, {
+			start: [this._context.parameters.StartLowerValue.raw || 20, this._context.parameters.StartUpperValue.raw || 80],
+			range: {
+				'min': this._context.parameters.RangeLowerValue.raw || 0,
+				'max': this._context.parameters.RangeUpperValue.raw || 100
+			},
+			step: this._context.parameters.StepValue.raw || 10,
+			direction: "ltr",
+			connect: true,
+			padding: this._context.parameters.HandlePadding.raw || 0,
+			tooltips: this._context.parameters.ToolTips.raw,
+			behaviour: this._context.parameters.BehaviourString.raw || "drag-tap-smooth-steps",
+
+
+		});
+		this._lowerValue = this._context.parameters.StartLowerValue.raw || 0;
+		this._upperValue = this._context.parameters.StartUpperValue.raw || 100;
+
+		// @ts-ignore 
+		this._control.noUiSlider.on('update', this.refreshData);
+		
 	}
 
-	public refreshData(values:string[], handle:number): void {
-		console.log("refreshData");
+	public refreshData(values:[], handle:number, unencoded:[], tap:boolean, positions:[] ):void{
 		let value:string = values[handle];
-
 		if(handle == 0){
 			this._lowerValue = parseFloat(value);
 		} else {
@@ -80,34 +117,7 @@ export class RangeSliderControl implements ComponentFramework.StandardControl<II
 	 * @param context The entire property bag available to control via Context Object; It contains values as set up by the customizer mapped to names defined in the manifest, as well as utility functions
 	 */
 	public updateView(context: ComponentFramework.Context<IInputs>): void {
-		if(!this._controlViewRendered) {
-			// Render the control
-			noUiSlider.create(this._container, {
-/*				start: [this._context.parameters.StartLowerValue.raw || 20, this._context.parameters.StartUpperValue.raw || 80],
-				range: {
-					'min': this._context.parameters.RangeLowerValue.raw || 0,
-					'max': this._context.parameters.RangeUpperValue.raw || 100
-				*/
-				start: [10, 80],
-				range: {
-					'min': 0,
-					'max': 100
-				},				
-				step: this._context.parameters.StepValue.raw || 10,
-				direction: "ltr",
-				connect: [false, true, false],
-				tooltips: this._context.parameters.ToolTips.raw || true,
-				behaviour: this._context.parameters.BehaviourString.raw || "drag-tap-smooth-steps",
 
-			});
-			this._lowerValue = this._context.parameters.StartLowerValue.raw || 0;
-			this._upperValue = this._context.parameters.StartUpperValue.raw || 100;
-
-			// @ts-ignorecd 
-			this._container.noUiSlider.on('update', this.refreshData);
-
-			this._controlViewRendered = true;
-		}
 	}
 
 
@@ -117,8 +127,8 @@ export class RangeSliderControl implements ComponentFramework.StandardControl<II
 	 */
 	public getOutputs(): IOutputs {
 		return { 
-            SelectedUpperValue: this._upperValue, 
-           	SelectedLowerValue: this._lowerValue 
+            SelectedLowerValue: this._lowerValue, 
+           	SelectedUpperValue: this._upperValue 
         };
 	}
 

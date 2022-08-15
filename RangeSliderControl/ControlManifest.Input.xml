@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <control namespace="allFunAndGames" constructor="RangeSliderControl" version="1.0.1" display-name-key="allFunAndGames.RangeSliderControl" description-key="Range Slider Control from allFunAndGames" control-type="standard">
+  <control namespace="allFunAndGames" constructor="RangeSliderControl" version="1.0.2" display-name-key="allFunAndGames.RangeSliderControl" description-key="Range Slider Control from allFunAndGames" control-type="standard">
     <type-group name="numbers">
       <type>Whole.None</type>
       <type>Currency</type>
@@ -16,8 +16,16 @@
     <!-- behaviour parameters -->
     <property name="ToolTips" display-name-key="Tooltips" description-key="Show values for handle positions" of-type="TwoOptions" usage="input" required="false" />
     <property name="StepValue" display-name-key="Step value" description-key="Step value of the sliders" of-type-group="numbers" usage="input" required="false" />
-    <property name="BehaviourString" display-name-key="RequireStep" description-key="Set 1 to move only on step value (StepValue required)" of-type="SingleLine.Text" usage="input" required="false" />
-    <!-- output paramters --> 
+    <property name="BehaviourString" display-name-key="Behaviour String" description-key="String to configure handle movement, default: drag-tap" of-type="SingleLine.Text" usage="input" required="false" />
+    <!-- option parameters -->
+    <property name="HandlePadding" display-name-key="Handle Padding" description-key="Set 1 to move only on step value (StepValue required)" of-type-group="numbers" usage="input" required="false" />
+    <!-- styling parameters -->
+    <property name="BackgroundFill" display-name-key="Fill" description-key="Color for background Fill" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="PaddingTop" display-name-key="Padding Top" description-key="Padding Top" of-type-group="numbers" usage="input" required="false" />
+    <property name="PaddingBottom" display-name-key="Padding Bottom" description-key="Padding Bottom" of-type-group="numbers" usage="input" required="false" />
+    <property name="PaddingLeft" display-name-key="Padding Left" description-key="Padding Left" of-type-group="numbers" usage="input" required="false" />
+    <property name="PaddingRight" display-name-key="Padding Right" description-key="Padding Right" of-type-group="numbers" usage="input" required="false" />
+    <!-- output paramters -->
     <property name="SelectedLowerValue" display-name-key="Selected lower value" description-key="Lower limit of selected range" of-type-group="numbers" usage="output" />
     <property name="SelectedUpperValue" display-name-key="Selected upper value" description-key="Upprt limit of selected range" of-type-group="numbers" usage="output" />
     <resources>
