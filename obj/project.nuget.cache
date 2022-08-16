@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "koUACcxIUcQInIYa835QqaQak4lifi8iv1+2egMPRdYtwgx4J+tTkgeyHjbbu9k9yO1lueK2ETAwVegbjM53ng==",
+  "success": true,
+  "projectFilePath": "F:\\PCF\\allFunAndGames\\PCF-RangeSliderControl-v2\\RangeSliderControl.pcfproj",
+  "expectedPackageFiles": [
+    "D:\\Users\\robki\\.nuget\\packages\\microsoft.powerapps.msbuild.pcf\\0.4.3\\microsoft.powerapps.msbuild.pcf.0.4.3.nupkg.sha512"
+  ],
+  "logs": []
+}

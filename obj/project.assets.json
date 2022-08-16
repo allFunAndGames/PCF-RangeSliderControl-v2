@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.6.2": {
-      "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
+      "Microsoft.PowerApps.MSBuild.Pcf/0.4.3": {
         "type": "package",
         "build": {
           "build/Microsoft.PowerApps.MSBuild.Pcf.props": {},
@@ -11,7 +11,7 @@
       }
     },
     ".NETFramework,Version=v4.6.2/win": {
-      "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
+      "Microsoft.PowerApps.MSBuild.Pcf/0.4.3": {
         "type": "package",
         "build": {
           "build/Microsoft.PowerApps.MSBuild.Pcf.props": {},
@@ -20,7 +20,7 @@
       }
     },
     ".NETFramework,Version=v4.6.2/win-x64": {
-      "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
+      "Microsoft.PowerApps.MSBuild.Pcf/0.4.3": {
         "type": "package",
         "build": {
           "build/Microsoft.PowerApps.MSBuild.Pcf.props": {},
@@ -29,7 +29,7 @@
       }
     },
     ".NETFramework,Version=v4.6.2/win-x86": {
-      "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
+      "Microsoft.PowerApps.MSBuild.Pcf/0.4.3": {
         "type": "package",
         "build": {
           "build/Microsoft.PowerApps.MSBuild.Pcf.props": {},
@@ -39,10 +39,10 @@
     }
   },
   "libraries": {
-    "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
-      "sha512": "/fs0GZo9HewWjfgkEffHfYrH/q/cq4pW2iVEI0YelEVVFdeB+cYUuSQR0iXaEkSDylxPB0dpgd3ZdgJ7a0TuEg==",
+    "Microsoft.PowerApps.MSBuild.Pcf/0.4.3": {
+      "sha512": "w/nu1AVrY7ZsYrxaqFEVKXnNCUPJiTZ+p3DqBKx0jy10YtNTYuzdc2Nz1iiF70bgXuWGn7xo0LTcVA99gWXYsQ==",
       "type": "package",
-      "path": "microsoft.powerapps.msbuild.pcf/1.0.6",
+      "path": "microsoft.powerapps.msbuild.pcf/0.4.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -50,7 +50,7 @@
         "LICENSE.txt",
         "build/Microsoft.PowerApps.MSBuild.Pcf.props",
         "build/Microsoft.PowerApps.MSBuild.Pcf.targets",
-        "microsoft.powerapps.msbuild.pcf.1.0.6.nupkg.sha512",
+        "microsoft.powerapps.msbuild.pcf.0.4.3.nupkg.sha512",
         "microsoft.powerapps.msbuild.pcf.nuspec"
       ]
     }
@@ -61,19 +61,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rob.killilea\\.nuget\\packages\\": {}
+    "D:\\Users\\robki\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\users\\rob.killilea\\Software Projects\\PCF-RangeSliderControl-v2\\RangeSliderControl.pcfproj",
+      "projectUniqueName": "F:\\PCF\\allFunAndGames\\PCF-RangeSliderControl-v2\\RangeSliderControl.pcfproj",
       "projectName": "RangeSliderControl",
-      "projectPath": "C:\\users\\rob.killilea\\Software Projects\\PCF-RangeSliderControl-v2\\RangeSliderControl.pcfproj",
-      "packagesPath": "C:\\Users\\rob.killilea\\.nuget\\packages\\",
-      "outputPath": "C:\\users\\rob.killilea\\Software Projects\\PCF-RangeSliderControl-v2\\obj\\",
+      "projectPath": "F:\\PCF\\allFunAndGames\\PCF-RangeSliderControl-v2\\RangeSliderControl.pcfproj",
+      "packagesPath": "D:\\Users\\robki\\.nuget\\packages\\",
+      "outputPath": "F:\\PCF\\allFunAndGames\\PCF-RangeSliderControl-v2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\rob.killilea\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "D:\\Users\\robki\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -85,12 +85,14 @@
       },
       "frameworks": {
         "net462": {
+          "targetAlias": "net462",
           "projectReferences": {}
         }
       }
     },
     "frameworks": {
       "net462": {
+        "targetAlias": "net462",
         "dependencies": {
           "Microsoft.PowerApps.MSBuild.Pcf": {
             "target": "Package",

@@ -8,16 +8,26 @@
       <type>Decimal</type>
     </type-group>
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
-    <property name="MinValue" display-name-key="MinValue" description-key="Minimal value of the slider" of-type-group="numbers" usage="input" required="true" />
-    <property name="MaxValue" display-name-key="MaxValue" description-key="Maximum value of the slider" of-type-group="numbers" usage="input" required="true" />
-    <property name="StepValue" display-name-key="StepValue" description-key="Step value of the slider" of-type-group="numbers" usage="input" required="false" />
-    <property name="HolderValue" display-name-key="HolderValue" description-key="HolderValue" of-type-group="numbers" usage="bound" required="false" />
-    <property name="LowerValue" display-name-key="LowerValue" description-key="Lower value of the slider that will be set" of-type-group="numbers" usage="bound" required="true" />
-    <property name="UpperValue" display-name-key="UpperValue" description-key="Upper value of the slider" of-type-group="numbers" usage="bound" required="true" />
-    <property name="ShowScale" display-name-key="ShowScale" description-key="Set 1 to show scale (StepValue required)" of-type="Whole.None" usage="input" required="false" />
-    <property name="RequireStep" display-name-key="RequireStep" description-key="Set 1 to move only on step value (StepValue required)" of-type="Whole.None" usage="input" required="false" />
-    <!-- added parameters here -->
-    <property name="ToolTips" display-name-key="ToolTips" description-key="Set 1 to show tool tip labels over handles" of-type="Whole.None" usage="input" required="false" />
+    <!-- mandatory parameters -->
+    <property name="StartLowerValue" display-name-key="Starting lower value" description-key="Starting value of the lower slider" of-type-group="numbers" usage="input" required="true" />
+    <property name="StartUpperValue" display-name-key="Starting upper value" description-key="Starting value of the upper slider" of-type-group="numbers" usage="input" required="true" />
+    <property name="RangeLowerValue" display-name-key="Range start value" description-key="Lower limit of range" of-type-group="numbers" usage="input" required="true" />
+    <property name="RangeUpperValue" display-name-key="Range end value" description-key="Upper limit of range" of-type-group="numbers" usage="input" required="true" />
+    <!-- behaviour parameters -->
+    <property name="ToolTips" display-name-key="Tooltips" description-key="Show values for handle positions" of-type="TwoOptions" usage="input" required="false" />
+    <property name="StepValue" display-name-key="Step value" description-key="Step value of the sliders" of-type-group="numbers" usage="input" required="false" />
+    <property name="BehaviourString" display-name-key="Behaviour String" description-key="String to configure handle movement, default: drag-tap" of-type="SingleLine.Text" usage="input" required="false" />
+    <!-- option parameters -->
+    <property name="HandlePadding" display-name-key="Handle Padding" description-key="Set 1 to move only on step value (StepValue required)" of-type-group="numbers" usage="input" required="false" />
+    <!-- styling parameters -->
+    <property name="BackgroundFill" display-name-key="Fill" description-key="Color for background Fill" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="PaddingTop" display-name-key="Padding Top" description-key="Padding Top" of-type-group="numbers" usage="input" required="false" />
+    <property name="PaddingBottom" display-name-key="Padding Bottom" description-key="Padding Bottom" of-type-group="numbers" usage="input" required="false" />
+    <property name="PaddingLeft" display-name-key="Padding Left" description-key="Padding Left" of-type-group="numbers" usage="input" required="false" />
+    <property name="PaddingRight" display-name-key="Padding Right" description-key="Padding Right" of-type-group="numbers" usage="input" required="false" />
+    <!-- output paramters -->
+    <property name="SelectedLowerValue" display-name-key="Selected lower value" description-key="Lower limit of selected range" of-type-group="numbers" usage="output" />
+    <property name="SelectedUpperValue" display-name-key="Selected upper value" description-key="Upprt limit of selected range" of-type-group="numbers" usage="output" />
     <resources>
       <code path="index.ts" order="1" />
       <css path="css/nouislider.min.css" order="1" />

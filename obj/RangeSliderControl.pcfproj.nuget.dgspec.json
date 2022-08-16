@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\PcfCodeExample\\RangeSliderControl\\RangeSliderControl.pcfproj": {}
+    "F:\\PCF\\allFunAndGames\\PCF-RangeSliderControl-v2\\RangeSliderControl.pcfproj": {}
   },
   "projects": {
-    "C:\\PcfCodeExample\\RangeSliderControl\\RangeSliderControl.pcfproj": {
+    "F:\\PCF\\allFunAndGames\\PCF-RangeSliderControl-v2\\RangeSliderControl.pcfproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\PcfCodeExample\\RangeSliderControl\\RangeSliderControl.pcfproj",
+        "projectUniqueName": "F:\\PCF\\allFunAndGames\\PCF-RangeSliderControl-v2\\RangeSliderControl.pcfproj",
         "projectName": "RangeSliderControl",
-        "projectPath": "C:\\PcfCodeExample\\RangeSliderControl\\RangeSliderControl.pcfproj",
-        "packagesPath": "C:\\Users\\odri_\\.nuget\\packages\\",
-        "outputPath": "C:\\PcfCodeExample\\RangeSliderControl\\obj\\",
+        "projectPath": "F:\\PCF\\allFunAndGames\\PCF-RangeSliderControl-v2\\RangeSliderControl.pcfproj",
+        "packagesPath": "D:\\Users\\robki\\.nuget\\packages\\",
+        "outputPath": "F:\\PCF\\allFunAndGames\\PCF-RangeSliderControl-v2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\odri_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "D:\\Users\\robki\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,12 +26,14 @@
         },
         "frameworks": {
           "net462": {
+            "targetAlias": "net462",
             "projectReferences": {}
           }
         }
       },
       "frameworks": {
         "net462": {
+          "targetAlias": "net462",
           "dependencies": {
             "Microsoft.PowerApps.MSBuild.Pcf": {
               "target": "Package",
