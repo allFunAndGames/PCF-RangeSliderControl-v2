@@ -11,20 +11,22 @@
     <!-- mandatory parameters -->
     <property name="StartLowerValue" display-name-key="Starting lower value" description-key="Starting value of the lower slider" of-type-group="numbers" usage="input" required="true" />
     <property name="StartUpperValue" display-name-key="Starting upper value" description-key="Starting value of the upper slider" of-type-group="numbers" usage="input" required="true" />
-    <property name="RangeLowerValue" display-name-key="Range start value" description-key="Lower limit of range" of-type-group="numbers" usage="input" required="true" />
-    <property name="RangeUpperValue" display-name-key="Range end value" description-key="Upper limit of range" of-type-group="numbers" usage="input" required="true" />
+    <property name="RangeLowerValue" display-name-key="Range start value" description-key="Lower limit of range" of-type-group="numbers" usage="input" required="true" default-value="0" />
+    <property name="RangeUpperValue" display-name-key="Range end value" description-key="Upper limit of range" of-type-group="numbers" usage="input" required="true" default-value="100" />
     <!-- behaviour parameters -->
-    <property name="ToolTips" display-name-key="Tooltips" description-key="Show values for handle positions" of-type="TwoOptions" usage="input" required="false" />
-    <property name="StepValue" display-name-key="Step value" description-key="Step value of the sliders" of-type-group="numbers" usage="input" required="false" />
-    <property name="BehaviourString" display-name-key="Behaviour String" description-key="String to configure handle movement, default: drag-tap" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="ToolTips" display-name-key="Tooltips" description-key="Show values for handle positions" of-type="TwoOptions" usage="input" required="false" default-value="true" />
+    <property name="StepValue" display-name-key="Step value" description-key="Step value of the sliders" of-type-group="numbers" usage="input" required="false" default-value="0" />
+    <property name="BehaviourString" display-name-key="Behaviour String" description-key="String to configure handle movement, default: drag-tap" of-type="SingleLine.Text" usage="input" required="false" default-value="drag-tap-smooth-steps" />
     <!-- option parameters -->
     <property name="HandlePadding" display-name-key="Handle Padding" description-key="Set 1 to move only on step value (StepValue required)" of-type-group="numbers" usage="input" required="false" />
     <!-- styling parameters -->
-    <property name="BackgroundFill" display-name-key="Fill" description-key="Color for background Fill" of-type="SingleLine.Text" usage="input" required="false" />
-    <property name="PaddingTop" display-name-key="Padding Top" description-key="Padding Top" of-type-group="numbers" usage="input" required="false" />
-    <property name="PaddingBottom" display-name-key="Padding Bottom" description-key="Padding Bottom" of-type-group="numbers" usage="input" required="false" />
-    <property name="PaddingLeft" display-name-key="Padding Left" description-key="Padding Left" of-type-group="numbers" usage="input" required="false" />
-    <property name="PaddingRight" display-name-key="Padding Right" description-key="Padding Right" of-type-group="numbers" usage="input" required="false" />
+    <property name="BackgroundFill" display-name-key="Fill" description-key="Color for background Fill" of-type="SingleLine.Text" usage="input" required="false" default-value="White" />
+    <property name="ConnectFill" display-name-key="Connector Bar Fill" description-key="Color for connect bar Fill" of-type="SingleLine.Text" usage="input" required="false" default-value="#3FB8AF" />
+    <property name="HandleFill" display-name-key="Handle Bar Fill" description-key="Color for Handles Fill" of-type="SingleLine.Text" usage="input" required="false" default-value="White" />
+    <property name="PaddingTop" display-name-key="Padding Top" description-key="Padding Top" of-type-group="numbers" usage="input" required="false" default-value="0" />
+    <property name="PaddingBottom" display-name-key="Padding Bottom" description-key="Padding Bottom" of-type-group="numbers" usage="input" required="false" default-value="0" />
+    <property name="PaddingLeft" display-name-key="Padding Left" description-key="Padding Left" of-type-group="numbers" usage="input" required="false" default-value="0" />
+    <property name="PaddingRight" display-name-key="Padding Right" description-key="Padding Right" of-type-group="numbers" usage="input" required="false" default-value="0" />
     <!-- output paramters -->
     <property name="SelectedLowerValue" display-name-key="Selected lower value" description-key="Lower limit of selected range" of-type-group="numbers" usage="output" />
     <property name="SelectedUpperValue" display-name-key="Selected upper value" description-key="Upprt limit of selected range" of-type-group="numbers" usage="output" />

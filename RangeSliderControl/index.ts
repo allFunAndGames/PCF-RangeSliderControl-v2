@@ -64,19 +64,19 @@ export class RangeSliderControl implements ComponentFramework.StandardControl<II
 
 		let wrapperContainer = document.createElement("div");
 		wrapperContainer.classList.add("dwcrm-slider-wrapper");
-	
-		//	Add css to wrapper to reflect padding values
-		//	wrapperContainer.style.backgroundColor = this._context.parameters.BackgroundFill.raw || "White";
+		this._control = document.createElement("div");
+		wrapperContainer.appendChild(this._control);
+		this._container.appendChild(wrapperContainer);
+
+		// Add background fill color to control
+		let controlContainer: HTMLDivElement | null = container.closest(".control-container");
+		if(controlContainer) {controlContainer.style.backgroundColor = this._context.parameters.BackgroundFill.raw || "White"; }
+
+		// Add css to wrapper to reflect padding values
 		wrapperContainer.style.paddingTop = this._context.parameters.PaddingTop.raw + "px" || "0px";
 		wrapperContainer.style.paddingBottom = this._context.parameters.PaddingBottom.raw + "px" || "0px";
 		wrapperContainer.style.paddingLeft = this._context.parameters.PaddingLeft.raw + "px" || "0px";
 		wrapperContainer.style.paddingRight = this._context.parameters.PaddingRight.raw + "px" || "0px";
-
-		this._control = document.createElement("div");
-		wrapperContainer.appendChild(this._control);
-		this._container.appendChild(wrapperContainer);
-		
-		
 
 		// Render slider
 		noUiSlider.create(this._control, {
@@ -97,6 +97,18 @@ export class RangeSliderControl implements ComponentFramework.StandardControl<II
 		this._lowerValue = this._context.parameters.StartLowerValue.raw || 0;
 		this._upperValue = this._context.parameters.StartUpperValue.raw || 100;
 
+		// Add 'Connect' bar fill colouring
+		// @ts-ignore
+		let connectContainers: HTMLDivElement[] = document.getElementsByClassName("noUi-connect");
+		for(var i = 0; i < connectContainers.length; i++)
+			{connectContainers[i].style.backgroundColor = this._context.parameters.ConnectFill.raw || "#3FB8AF"; };
+		
+		// Add Handle fill colouring
+		// @ts-ignore
+		let handleContainers: HTMLDivElement[] = document.getElementsByClassName("noUi-handle");
+		for(var i = 0; i < handleContainers.length; i++)
+			{handleContainers[i].style.backgroundColor = this._context.parameters.HandleFill.raw || "White"; };
+	
 		// @ts-ignore 
 		this._control.noUiSlider.on('update', this.refreshData);
 		
