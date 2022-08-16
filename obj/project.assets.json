@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.6.2": {
-      "Microsoft.PowerApps.MSBuild.Pcf/0.2.71": {
+      "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
         "type": "package",
         "build": {
           "build/Microsoft.PowerApps.MSBuild.Pcf.props": {},
@@ -11,7 +11,7 @@
       }
     },
     ".NETFramework,Version=v4.6.2/win": {
-      "Microsoft.PowerApps.MSBuild.Pcf/0.2.71": {
+      "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
         "type": "package",
         "build": {
           "build/Microsoft.PowerApps.MSBuild.Pcf.props": {},
@@ -20,7 +20,7 @@
       }
     },
     ".NETFramework,Version=v4.6.2/win-x64": {
-      "Microsoft.PowerApps.MSBuild.Pcf/0.2.71": {
+      "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
         "type": "package",
         "build": {
           "build/Microsoft.PowerApps.MSBuild.Pcf.props": {},
@@ -29,7 +29,7 @@
       }
     },
     ".NETFramework,Version=v4.6.2/win-x86": {
-      "Microsoft.PowerApps.MSBuild.Pcf/0.2.71": {
+      "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
         "type": "package",
         "build": {
           "build/Microsoft.PowerApps.MSBuild.Pcf.props": {},
@@ -39,10 +39,10 @@
     }
   },
   "libraries": {
-    "Microsoft.PowerApps.MSBuild.Pcf/0.2.71": {
-      "sha512": "m37lWB6VIJYO3QKzEGwICf8FXfwoislRlo+JtsgF0ZB154Muhu6S1nF0PO3JnmOhSmXZTiTyt7DQ9nuLUiAo1Q==",
+    "Microsoft.PowerApps.MSBuild.Pcf/1.0.6": {
+      "sha512": "/fs0GZo9HewWjfgkEffHfYrH/q/cq4pW2iVEI0YelEVVFdeB+cYUuSQR0iXaEkSDylxPB0dpgd3ZdgJ7a0TuEg==",
       "type": "package",
-      "path": "microsoft.powerapps.msbuild.pcf/0.2.71",
+      "path": "microsoft.powerapps.msbuild.pcf/1.0.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -50,30 +50,30 @@
         "LICENSE.txt",
         "build/Microsoft.PowerApps.MSBuild.Pcf.props",
         "build/Microsoft.PowerApps.MSBuild.Pcf.targets",
-        "microsoft.powerapps.msbuild.pcf.0.2.71.nupkg.sha512",
+        "microsoft.powerapps.msbuild.pcf.1.0.6.nupkg.sha512",
         "microsoft.powerapps.msbuild.pcf.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.6.2": [
-      "Microsoft.PowerApps.MSBuild.Pcf >= 0.*"
+      "Microsoft.PowerApps.MSBuild.Pcf >= 1.0.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Asus\\.nuget\\packages\\": {}
+    "C:\\Users\\rob.killilea\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Code\\PCF-RangeSliderControl\\RangeSliderControl.pcfproj",
+      "projectUniqueName": "C:\\users\\rob.killilea\\Software Projects\\PCF-RangeSliderControl-v2\\RangeSliderControl.pcfproj",
       "projectName": "RangeSliderControl",
-      "projectPath": "C:\\Code\\PCF-RangeSliderControl\\RangeSliderControl.pcfproj",
-      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Code\\PCF-RangeSliderControl\\obj\\",
+      "projectPath": "C:\\users\\rob.killilea\\Software Projects\\PCF-RangeSliderControl-v2\\RangeSliderControl.pcfproj",
+      "packagesPath": "C:\\Users\\rob.killilea\\.nuget\\packages\\",
+      "outputPath": "C:\\users\\rob.killilea\\Software Projects\\PCF-RangeSliderControl-v2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rob.killilea\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -94,7 +94,7 @@
         "dependencies": {
           "Microsoft.PowerApps.MSBuild.Pcf": {
             "target": "Package",
-            "version": "[0.*, )"
+            "version": "[1.0.1, )"
           }
         }
       }
@@ -110,5 +110,20 @@
         "#import": []
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "RangeSliderControl depends on Microsoft.PowerApps.MSBuild.Pcf (>= 1.0.1) but Microsoft.PowerApps.MSBuild.Pcf 1.0.1 was not found. An approximate best match of Microsoft.PowerApps.MSBuild.Pcf 1.0.6 was resolved.",
+      "libraryId": "Microsoft.PowerApps.MSBuild.Pcf",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.6.2",
+        ".NETFramework,Version=v4.6.2/win",
+        ".NETFramework,Version=v4.6.2/win-x64",
+        ".NETFramework,Version=v4.6.2/win-x86"
+      ]
+    }
+  ]
 }

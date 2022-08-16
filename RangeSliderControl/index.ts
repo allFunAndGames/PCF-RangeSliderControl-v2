@@ -45,7 +45,9 @@ export class RangeSliderControl implements ComponentFramework.StandardControl<II
 
 		let showScale = !!context.parameters.ShowScale.raw;
 		let requireStep = !!context.parameters.RequireStep.raw;
-
+		// additional parameters here
+		let toolTips = !!context.parameters.ToolTips.raw;
+		
 		this._slider = document.createElement("div");
 		this._slider.id = "slider";
 
@@ -60,7 +62,7 @@ export class RangeSliderControl implements ComponentFramework.StandardControl<II
 		let startUpper:number = this._upperValue || this._maxValue;
 
 		let sliderOptions = this.getSliderOptions(this._minValue, this._maxValue,
-			startLower, startUpper, this._stepValue, showScale, requireStep);
+			startLower, startUpper, this._stepValue, showScale, requireStep, toolTips);
 
 		noUiSlider.create(this._slider, sliderOptions);
 
@@ -69,7 +71,7 @@ export class RangeSliderControl implements ComponentFramework.StandardControl<II
 	}
 
 	private getSliderOptions(min:number,max:number, startLower:number, startUpper:number, 
-		step:number, showScale:boolean, requireStep:boolean): noUiSlider.Options{
+		step:number, showScale:boolean, requireStep:boolean, toolTips:boolean): noUiSlider.Options{
 
 		let options:noUiSlider.Options = {
 			start: [startLower, startUpper],
@@ -78,7 +80,6 @@ export class RangeSliderControl implements ComponentFramework.StandardControl<II
 				'max': max
 			},
 			connect: true,
-			tooltips: true
 		};
 
 		if(showScale && step){
@@ -95,6 +96,10 @@ export class RangeSliderControl implements ComponentFramework.StandardControl<II
 				'min': [min, step],
 				'max': max
 			}
+		}
+
+		if(toolTips){
+			options.tooltips = [true]
 		}
 
 		return options;
